@@ -1,17 +1,19 @@
 <?php
 
 class TGS_Admin {
-	
 	public $page_slug;
-	
+
 	function __construct() {
 		add_action( 'admin_menu', array( $this, 'register_menu' ) );
 		add_action( 'admin_init', array( $this, 'plugin_settings' ) );
 	}
-	
-	// Регистрация пункта меню и страницы настроек плагина
+
+	/**
+	 * Регистрирует пункт меню и страницу настроек плагина
+	 *
+	 * @since 0.1
+	 */
 	function register_menu() {
-		
 		// Добавление пункта меню в основное меню "Настройки"
 		$this->page_slug = add_options_page(
 			'Telegram Sender',
@@ -20,19 +22,27 @@ class TGS_Admin {
 			'tgs',
 			array( $this, 'render_options_page' )
 		);
-		
+
 		// Создаем хук для зацепа скриптов и стилей только на этой странице
-		add_action( 'admin_print_styles-' . $this->page_slug, array( $this, 'load_assents' ) );
+		add_action( 'admin_print_styles-' . $this->page_slug, array( $this, 'load_assets' ) );
 	}
-	
-	// Подключение JavaScript и CSS
-	function load_assents() {
+
+	/**
+	 * Подключает JS и CSS
+	 *
+	 * @since 0.1
+	 */
+	function load_assets() {
 		add_thickbox();
 		wp_enqueue_style( 'tgs-admin', TGS_PLUGIN_ASSETS_URL . '/css/tgs-admin.css' );
 		wp_enqueue_script( 'tgs-admin', TGS_PLUGIN_ASSETS_URL . '/js/tgs-admin.js', array( 'jquery' ) );
 	}
-	
-	// Рендеринг страницы настроек
+
+	/**
+	 * Рендерит страницу настроек
+	 *
+	 * @since 0.1
+	 */
 	function render_options_page() {
 		?>
         <div class="wrap tgs">
@@ -62,8 +72,8 @@ class TGS_Admin {
 
                 <h4>Справочник</h4>
                 <ul>
-                    <li><a href="https://core.telegram.org/bots/api"><i>Официальная документация Telegram</i></a></li>
-                    <li><a href="https://tlgrm.ru/docs/bots/api"><i>Переведенная документация Telegram</i></a></li>
+                    <li><a href="https://core.telegram.org/bots/api" target="_blank"><i>Официальная документация Telegram</i></a></li>
+                    <li><a href="https://tlgrm.ru/docs/bots/api" target="_blank"><i>Переведенная документация Telegram</i></a></li>
                 </ul>
 
                 <!-- Модальное окно с результатами проверки токена и чата -->
@@ -79,10 +89,10 @@ class TGS_Admin {
 				<?php
 				// Cкрытые защитные поля
 				settings_fields( 'tgs_options_group' );
-				
+
 				// Cекции с настройками (опциями)
 				do_settings_sections( $this->page_slug . '_tab_1' );
-				
+
 				// Кнопка сохранения
 				submit_button();
 				?>
@@ -90,18 +100,20 @@ class TGS_Admin {
         </div>
 		<?
 	}
-	
+
 	/**
-	 * Регистрируем настройки.
+	 * Регистрирует настройки.
 	 * Настройки будут храниться в массиве.
+	 *
+	 * @since 0.1
 	 */
 	function plugin_settings() {
 		// Регистрирует новую опцию и callback функцию для обработки значения опции при её сохранении в БД.
 		register_setting( 'tgs_options_group', 'tgs_options', array( $this, 'sanitize_fields' ) );
-		
+
 		// Создает новый блок (секцию), в котором выводятся поля настроек.
 		add_settings_section( 'tgs_section', 'Основные настройки', '', $this->page_slug . '_tab_1' );
-		
+
 		// Регистрация поля : Токен бота
 		add_settings_field(
 			'field_token_bot',
@@ -110,7 +122,7 @@ class TGS_Admin {
 			$this->page_slug . '_tab_1',
 			'tgs_section'
 		);
-		
+
 		// Регистрация поля : ID чата
 		add_settings_field(
 			'field_chat_id',
@@ -120,8 +132,12 @@ class TGS_Admin {
 			'tgs_section'
 		);
 	}
-	
-	// Поле: Токен бота
+
+	/**
+	 * Поле Поле "Токен бота"
+	 *
+	 * @since 0.1
+	 */
 	function make_field_token_bot() {
 		$key = 'token_bot';
 		$val = TGS_Helpers::get_option( $key );
@@ -132,8 +148,12 @@ class TGS_Admin {
 			esc_attr( $val )
 		);
 	}
-	
-	// Поле: ID чата
+
+	/**
+	 * Поле "ID чата"
+	 *
+	 * @since 0.1
+	 */
 	function make_field_chat_id() {
 		$key = 'chat_id';
 		$val = TGS_Helpers::get_option( $key );
@@ -144,14 +164,20 @@ class TGS_Admin {
 			esc_attr( $val )
 		);
 	}
-	
-	// Очистка данных полей
+
+	/**
+	 * Очистка данных полей
+	 *
+	 * @since 0.1
+	 *
+	 * @param array $options
+	 * @return array
+	 */
 	function sanitize_fields( $options ) {
-		
 		foreach ( $options as $name => & $val ) {
 			$val = strip_tags( $val );
 		}
-		
+
 		return $options;
 	}
 }
