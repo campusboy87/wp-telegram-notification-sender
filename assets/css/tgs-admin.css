@@ -1,0 +1,36 @@
+.result .item-mess > div {
+    width: 100%;
+    display: inline-block;
+    margin: 5px;
+    overflow: hidden;
+}
+
+.result .item-mess:first-child{
+    font-weight: bold;
+}
+
+.result .item-mess:nth-child(odd) {
+    background: #fff;
+}
+
+.result .item-mess:nth-child(even) {
+    background: #ececec;
+}
+
+.result .item-mess:hover {
+    background: #d0d0d0;
+}
+
+
+
+.result .item-mess .f,
+.result .item-mess .u {
+    max-width: 120px;
+}
+
+.result .item-mess .i {
+    max-width: 80px;
+}
+.result .item-mess .t {
+    max-width: 200px;
+}
