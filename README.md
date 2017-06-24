@@ -1,16 +1,16 @@
 # WP-Telegram-Sender
-Отправляет письма с вашего WP сайта в чат Телеграмм.
+Отправляет письма с вашего WP сайта в чат Телеграм.
 
 ## Инструкция
 
-* Создайте своего бота ([советы по созданию бота](https://tlgrm.ru/docs/bots#botfather)) у официального бота Телеграмм [@BotFather](https://t.me/BotFather).
+* Создайте своего бота ([советы по созданию бота](https://tlgrm.ru/docs/bots#botfather)) у официального бота Телеграм [@BotFather](https://t.me/BotFather).
 * Получите от него токен и сохраните в соответствующем поле.
 * Начните диалог со своим ботом, нажав кнопку **/start**, а затем напишите ему любой текст (необязательно, но рекомендуется).
 * Теперь узнайте ID чата, кликнув по соответствующей ссылке. Откроется список всех сообщений, присланных боту. Найдите в списке сообщений своё, скопируйте ID чата и сохраните в соответствующее поле.
 
 ## Справочник
-* <a href="https://core.telegram.org/bots/api">Официальная документация Telegram</a>
-* <a href="https://tlgrm.ru/docs/bots/api">Переведенная документация Telegram</a>
+* <a href="https://core.telegram.org/bots/api" target="_blank">Официальная документация Telegram</a>
+* <a href="https://tlgrm.ru/docs/bots/api" target="_blank">Переведенная документация Telegram</a>
 
 ## TODO Лист
 Оставляйте свои пожелания в [issues](https://github.com/campusboy87/WP-Telegram-Sender/issues).
