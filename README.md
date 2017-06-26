@@ -9,8 +9,8 @@
 * Теперь узнайте ID чата, кликнув по соответствующей ссылке. Откроется список всех сообщений, присланных боту. Найдите в списке сообщений своё, скопируйте ID чата и сохраните в соответствующее поле.
 
 ## Справочник
-* <a href="https://core.telegram.org/bots/api" target="_blank">Официальная документация Telegram</a>
-* <a href="https://tlgrm.ru/docs/bots/api" target="_blank">Переведенная документация Telegram</a>
+* [Официальная документация Telegram](https://core.telegram.org/bots/api)
+* [Переведенная документация Telegram](https://tlgrm.ru/docs/bots/api)
 
 ## TODO Лист
 Оставляйте свои пожелания в [issues](https://github.com/campusboy87/WP-Telegram-Sender/issues).
