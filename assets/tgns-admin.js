@@ -1,8 +1,18 @@
 jQuery('document').ready(function ($) {
 
-    var $tgsBox = $('.tgs');
+    var $tgnsBox = $('.tgns');
 
-    $tgsBox.on('click', '.dashicons-visibility', function () {
+    var $tabs = $tgnsBox.find('#tabs');
+
+    $tabs.tabs();
+
+    $tabs.find('.tabs-item').on('click', 'a', function (e) {
+        console.log();
+        $('a', e.delegateTarget).removeClass('nav-tab-active');
+        $(this).addClass('nav-tab-active');
+    });
+
+    $tgnsBox.on('click', '.dashicons-visibility', function () {
         $(this)
             .prev()
             .attr("type", "text");
@@ -12,7 +22,7 @@ jQuery('document').ready(function ($) {
             .addClass('dashicons-hidden');
     });
 
-    $tgsBox.on('click', '.dashicons-hidden', function () {
+    $tgnsBox.on('click', '.dashicons-hidden', function () {
         $(this)
             .prev()
             .attr("type", "password");
@@ -22,14 +32,14 @@ jQuery('document').ready(function ($) {
             .addClass('dashicons-visibility');
     });
 
-    $tgsBox.on('click', '.check-chat', function (e) {
+    $tgnsBox.on('click', '.check-chat', function (e) {
         e.preventDefault();
 
-        var modalBox = $('#test-token-and-chat');
-        var resultBox = $('.result', modalBox);
-        var tokenBot = $('[name="tgs_options[token_bot]"]').val();
+        var $modalBox = $('#test-token-and-chat');
+        var $resultBox = $('.result', $modalBox);
+        var tokenBot = $('[name="tgns[token_bot]"]').val();
 
-        resultBox.text('Загрузка результата...');
+        $resultBox.text('Загрузка результата...');
 
         if (tokenBot) {
 
@@ -40,16 +50,16 @@ jQuery('document').ready(function ($) {
                 complete: function (data) {
                     console.log(data);
 
-                    if ( data.responseJSON.ok ) {
+                    if (data.responseJSON.ok) {
                         var messages = data.responseJSON.result;
 
                         if (messages.length) {
                             var listMessages = '<div class="item-mess">';
-                                listMessages += '<div class="f">Имя пользователя</div>';
-                                listMessages += '<div class="u">Ник пользователя</div>';
-                                listMessages += '<div class="i">ID чата</div>';
-                                listMessages += '<div class="t">Присланный текст</div>';
-                                listMessages += '</div>';
+                            listMessages += '<div class="f">Имя пользователя</div>';
+                            listMessages += '<div class="u">Ник пользователя</div>';
+                            listMessages += '<div class="i">ID чата</div>';
+                            listMessages += '<div class="t">Присланный текст</div>';
+                            listMessages += '</div>';
 
                             messages.forEach(function (item, i, messages) {
                                 var first_name = item.message.chat.first_name;
@@ -64,19 +74,19 @@ jQuery('document').ready(function ($) {
                                 listMessages += '</div>';
                             });
 
-                            resultBox.html(listMessages);
+                            $resultBox.html(listMessages);
                         } else {
-                            resultBox.text('Подключение к боту успешное, но сообщений не найдено.');
+                            $resultBox.text('Подключение к боту успешное, но сообщений не найдено.');
                         }
 
                     } else {
-                        resultBox.text('Ошибка запроса. Код ошибки: ' + data.status + '. Описание: ' + data.statusText);
+                        $resultBox.text('Ошибка запроса. Код ошибки: ' + data.status + '. Описание: ' + data.statusText);
                     }
 
                 }
             });
         } else {
-            resultBox.text('Без токена узнать ID чата невозможно.');
+            $resultBox.text('Без токена узнать ID чата невозможно.');
         }
     });
 

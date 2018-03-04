@@ -1,0 +1,49 @@
+.tgns input[type=text],
+.tgns input[type=password] {
+    width: 100%;
+    max-width: 300px;
+}
+
+.tgns .form-table .dashicons {
+    cursor: pointer;
+}
+
+.tgns .form-table .dashicons {
+    cursor: pointer;
+}
+
+.tgns .result .item-mess > div {
+    width: 100%;
+    display: inline-block;
+    margin: 5px;
+    overflow: hidden;
+}
+
+.tgns .result .item-mess:first-child {
+    font-weight: bold;
+}
+
+.tgns .result .item-mess:nth-child(odd) {
+    background: #fff;
+}
+
+.tgns .result .item-mess:nth-child(even) {
+    background: #ececec;
+}
+
+.tgns .result .item-mess:hover {
+    background: #d0d0d0;
+}
+
+.tgns .result .item-mess .f,
+.tgns .result .item-mess .u {
+    max-width: 120px;
+}
+
+.tgns .result .item-mess .i {
+    max-width: 80px;
+}
+
+.tgns .result .item-mess .t {
+    max-width: 200px;
+}
