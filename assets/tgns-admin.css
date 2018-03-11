@@ -1,7 +1,7 @@
 .tgns input[type=text],
 .tgns input[type=password] {
     width: 100%;
-    max-width: 300px;
+    max-width: 380px;
 }
 
 .tgns .form-table .dashicons {

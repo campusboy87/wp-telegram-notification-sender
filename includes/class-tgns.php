@@ -307,7 +307,7 @@ class TGNS {
 	function check_logfile() {
 		$path_log = $this->path . $this->name_logfile;
 		
-		if ( file_exists( $path_log ) ) {
+		if ( is_file( $path_log ) ) {
 			$this->status_log = true;
 		} else {
 			$status = file_put_contents( $path_log, '' );

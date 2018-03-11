@@ -26,12 +26,14 @@ function tgns_init() {
  * Выполняет действия при активации плагина.
  */
 function tgns_activate() {
-	$default_option = array(
-		'name_logfile' => wp_generate_uuid4() . '.log',
-	);
-	
-	add_option( 'tgns', $default_option, '', 'no' );
+	if ( empty( get_option( 'tgns' ) ) ) {
+		$default_option = array(
+			'name_logfile' => wp_generate_uuid4() . '.log',
+		);
+		
+		add_option( 'tgns', $default_option, '', 'no' );
+	}
 }
 
-add_action( 'plugins_loaded', 'tgns_init', 9999 );
+add_action( 'init', 'tgns_init' );
 register_activation_hook( TGNS_PLUGIN_FILE, 'tgns_activate' );
